@@ -6,7 +6,8 @@ cleaned_openwebtext_val.txt
 .python-version
 *.zip
 .DS_Store
-
+training_spm.py
+training.py
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/python
