@@ -1,14 +1,8 @@
 import sentencepiece as spm
 import os
-import py7zr
-import lzma
-import os
 import pyarrow.feather as feather
-import mmap
-import random
 from tqdm import tqdm
 from tqdm import tqdm
-from datasets import load_dataset
 from data_config import DataConfig
 
 DIRECTORY = os.path.dirname(os.path.realpath(__file__))
@@ -24,20 +18,23 @@ data_config.clean_file(data_config.output_file_dataset, data_config.data)
 
 # Train SentencePiece on the chunk
 print("Training SentencePiece BPE model on the full dataset...")
-spm.SentencePieceTrainer.Train(
-    input=data_config.output_file_dataset,                 # Provide file instead of a string
-    model_prefix=f'{data_config.model_prefix}',  # Unique prefix
-    vocab_size=data_config.vocab_size,                      
-    model_type='bpe',                       
-    max_sentence_length=6000,              
-    train_extremely_large_corpus=True,      
-    num_threads=16,                          
-    character_coverage=0.9995,              
-    shuffle_input_sentence=True,             
-    max_sentencepiece_length=16,
-    input_sentence_size=data_config.input_sentence_size,
-    normalization_rule_name='nmt_nfkc'       
-)
+if not (os.path.exists(f'{data_config.model_prefix}.model')):
+    spm.SentencePieceTrainer.Train(
+        input=data_config.output_file_dataset,                 # Provide file instead of a string
+        model_prefix=f'{data_config.model_prefix}',  # Unique prefix
+        vocab_size=data_config.vocab_size,                      
+        model_type='bpe',                       
+        max_sentence_length=6000,              
+        train_extremely_large_corpus=True,      
+        num_threads=16,                          
+        character_coverage=0.9995,              
+        shuffle_input_sentence=True,             
+        max_sentencepiece_length=16,
+        input_sentence_size=data_config.input_sentence_size,
+        normalization_rule_name='nmt_nfkc'       
+    )
+else:
+    print("Model already exists!")
 
 print("Training complete!")
 
