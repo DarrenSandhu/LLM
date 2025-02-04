@@ -21,7 +21,7 @@ class ModelConfig:
     device = 'mps' if torch.mps.is_available() else 'cpu'
     block_size = 64
     batch_size = 32
-    max_iters = 10000
+    max_iters = 100000
     eval_iters = 100
     learning_rate = 6e-4
     dropout = 0.1
