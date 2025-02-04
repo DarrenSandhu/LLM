@@ -111,11 +111,11 @@ with open('model_checkpoint.pkl', 'rb') as f:
 
 ## Future Work
  
-Pretrain the model down to a smaller loss value.
-Fine-tune the model on the open assistant dataset.
-Create a fine-tuning script.
-Create a chatbot using the fine-tuned model.
-Evaluate the model on the open assistant dataset.
+- Pretrain the model down to a smaller loss value.
+- Fine-tune the model on the open assistant dataset.
+- Create a fine-tuning script.
+- Create a chatbot using the fine-tuned model.
+- Evaluate the model on the open assistant dataset.
 
 ## License
 Licensed under the MIT License. See `LICENSE` for more information.
