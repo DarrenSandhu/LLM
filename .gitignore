@@ -5,7 +5,7 @@ cleaned_openwebtext_val.txt
 /mps
 .python-version
 *.zip
-
+.DS_Store
 
 
 
