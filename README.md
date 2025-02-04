@@ -63,10 +63,10 @@ The data configuration is handled in the `DataConfig` class within `llm/data/dat
 
 ## Creating the Dataset and Training the SentencePiece Model
 
-To create the dataset, run the following command:
+To create the dataset, run the following command inside the 'llm' directory:
 
 ```bash
-python -m data.create_spm
+python data/create_spm.py
 ```
 
 When you run this script, it performs several key tasks to prepare your text dataset and train a SentencePiece BPE tokenizer model. Here’s a breakdown of what the script does:
