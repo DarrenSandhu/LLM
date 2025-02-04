@@ -12,7 +12,6 @@ class DataConfig:
     output_file_train = "cleaned_openwebtext_train.txt"
     output_file_val = "cleaned_openwebtext_val.txt"
     output_file_dataset = "cleaned_openwebtext_dataset.txt"
-    vocab_file = "vocab2.txt"
     print("Loading dataset...")
     dataset = load_dataset('Skylion007/openwebtext')
     data = dataset["train"]
