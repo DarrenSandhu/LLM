@@ -61,6 +61,50 @@ The data configuration is handled in the `DataConfig` class within `llm/data/dat
 - **output_file_train**: Path to the training data file.
 - **output_file_val**: Path to the validation data file.
 
+## Creating the Dataset and Training the SentencePiece Model
+
+To create the dataset, run the following command:
+
+```bash
+python -m data.create_spm
+```
+
+When you run this script, it performs several key tasks to prepare your text dataset and train a SentencePiece BPE tokenizer model. Here’s a breakdown of what the script does:
+
+- **Load Data Configuration**  
+  The script begins by importing required modules and initializing the data configuration via the `DataConfig` class. This configuration provides access to the training and validation datasets as well as various file paths and parameters.
+
+- **Display Dataset Statistics**  
+  It prints out the total number of rows in both the training and validation datasets, giving you an overview of your data size.
+
+- **Clean the Full Dataset**  
+  The script cleans the entire dataset by processing the raw text data and writing the cleaned output to a file. This step ensures that the data is formatted consistently and is ready for tokenizer training.
+
+- **Train the SentencePiece BPE Model**  
+  Using the cleaned dataset file as input, the script trains a SentencePiece model with the following configurations:
+  - **Vocabulary Size:** Sets the size of the tokenizer vocabulary.
+  - **Model Type:** Uses Byte Pair Encoding (BPE) for subword segmentation.
+  - **Max Sentence Length:** Specifies the maximum sentence length to consider.
+  - **Large Corpus Handling:** Optimized for extremely large datasets.
+  - **Character Coverage & Normalization:** Ensures broad character coverage and applies specific normalization rules.
+  - **Input Shuffling & Multi-threading:** Improves training efficiency by shuffling input sentences and utilizing multiple threads.
+  
+  The model is saved with a unique prefix specified in the configuration.
+
+- **Cleanup of Intermediate Files**  
+  After training the SentencePiece model, the script deletes the cleaned full dataset file to free up disk space.
+
+- **Create Cleaned Train and Validation Files**  
+  If they do not already exist, the script creates separate cleaned files for training and validation datasets. This step prepares the data for subsequent model training tasks.
+
+- **Test the Trained SentencePiece Model**  
+  Finally, the script loads the newly trained SentencePiece model and demonstrates its functionality by:
+  - **Encoding a Sample Text:** Converts an example sentence into subword tokens.
+  - **Decoding the Tokens:** Converts the subword tokens back into the original text, verifying that the model works as expected.
+
+By the end of the script, you will have a trained SentencePiece BPE model ready for tokenizing text, along with cleaned train and validation files prepared for further model training.
+
+
 ## Training The Model
 
 To train the model, run the following command:
